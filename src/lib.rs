@@ -1,7 +1,9 @@
 use pyo3::{pyclass, pyfunction, pymethods, pymodule, PyResult, Python, wrap_pyfunction};
 use pyo3::prelude::PyModule;
+use serde::{Serialize, Deserialize};
 
 #[pyclass]
+#[derive(Serialize, Deserialize)]
 struct Tester {
     name: String,
     age: i64,
@@ -24,6 +26,9 @@ impl Tester {
     }
     fn set_age(&mut self, age: i64) {
         self.age = age;
+    }
+    fn to_json(&self) -> String {
+        serde_json::to_string(self).unwrap()
     }
 }
 
