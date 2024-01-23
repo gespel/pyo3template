@@ -8,5 +8,5 @@ name = "pyo3template"
 crate-type = ["cdylib"]
 
 [dependencies.pyo3]
-version = "0.20.0"
+version = "0.20.2"
 features = ["extension-module"]

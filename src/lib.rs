@@ -28,16 +28,15 @@ impl Tester {
 }
 
 
-#[pyfunction]
-/// Formats the sum of two numbers as string.
-fn add(a: usize, b: usize) -> PyResult<String> {
-    Ok((a + b).to_string())
+#[no_mangle]/// Formats the sum of two numbers as string.
+pub extern fn add(a: usize, b: usize) -> usize {
+    a + b
 }
 
 #[pymodule]
 /// A Python module implemented in Rust.
 fn pyo3template(_py: Python, m: &PyModule) -> PyResult<()> {
-    m.add_wrapped(wrap_pyfunction!(add))?;
+    //m.add_wrapped(wrap_pyfunction!(add))?;
     m.add_class::<Tester>()?;
 
     Ok(())
